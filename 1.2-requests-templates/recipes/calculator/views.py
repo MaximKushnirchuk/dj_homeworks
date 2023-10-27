@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from pprint import pprint
 
 DATA = {
     'omlet': {
@@ -19,12 +21,41 @@ DATA = {
     # можете добавить свои рецепты ;)
 }
 
-# Напишите ваш обработчик. Используйте DATA как источник данных
-# Результат - render(request, 'calculator/index.html', context)
-# В качестве контекста должен быть передан словарь с рецептом:
-# context = {
-#   'recipe': {
-#     'ингредиент1': количество1,
-#     'ингредиент2': количество2,
-#   }
-# }
+
+def list_dishes(request):
+    dishes = DATA.keys()
+    return HttpResponse(f'{dishes}')
+
+
+def omlet(request):
+    person = request.GET.get('servings', 1)
+    context = {'recipe' : {}}
+    for k, v in DATA['omlet'].items() :
+        context['recipe'].update({k : v * int(person)})
+        print(k, v, type(v))
+    print('- 8 - ' * 10)
+    pprint(context)
+    print(person, type(person))
+    return render(request, 'calculator/index.html', context)
+
+def pasta(request):
+    person = request.GET.get('servings', 1)
+    context = {'recipe' : {}}
+    for k, v in DATA['pasta'].items() :
+        context['recipe'].update({k : v * int(person)})
+        print(k, v, type(v))
+    print('- 8 - ' * 10)
+    pprint(context)
+    print(person, type(person))
+    return render(request, 'calculator/index.html', context)
+
+def buter(request):
+    person = request.GET.get('servings', 1)
+    context = {'recipe' : {}}
+    for k, v in DATA['buter'].items() :
+        context['recipe'].update({k : v * int(person)})
+        print(k, v, type(v))
+    print('- 8 - ' * 10)
+    pprint(context)
+    print(person, type(person))
+    return render(request, 'calculator/index.html', context)
