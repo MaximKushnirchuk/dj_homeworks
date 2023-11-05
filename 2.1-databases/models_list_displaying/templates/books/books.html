@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Каталог{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="header">
+      <h1>Каталог</h1>
+    </div>
+
+
+<body>
+    <div class="content">
+        {% for book in l_books %}
+        <div class="author">
+            <h4>{{ book.author }}</h4>
+        </div>
+ 
+    {% endfor %}
+</body>
+</html>
+
+
+<!-- <div class="content">
+  {% for book in l_books %}
+    <div class="phone">
+        <h3>{{ book.name }}</h3>
+      <div class="price">Стоимость: {{ phone.price }} ₽</div>
+      <img height="400" src="{{ phone.image }}" alt="{{ phone.name }}"/>
+    </div>
+  {% endfor %}
+</div>
+</div>
+{% endblock %} -->
+
+
+
+
