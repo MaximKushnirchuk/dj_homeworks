@@ -3,7 +3,7 @@ from django.db import models
 
 class Article(models.Model):
 
-    title = models.CharField(max_length=256, verbose_name='Название')
+    title = models.CharField(max_length=256, verbose_name='Название', unique= True)
     text = models.TextField(verbose_name='Текст')
     published_at = models.DateTimeField(verbose_name='Дата публикации')
     image = models.ImageField(null=True, blank=True, verbose_name='Изображение',)
@@ -27,3 +27,4 @@ class Scope(models.Model):
     
     title = models.ForeignKey(Article, on_delete=models.CASCADE)
     tag_name = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    is_main = models.BooleanField(default= False)
