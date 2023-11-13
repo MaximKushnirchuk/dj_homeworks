@@ -16,6 +16,7 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
+
 class Tag(models.Model):
     name = models.CharField(max_length=30,  verbose_name='Тег')
     articles = models.ManyToManyField(Article, related_name='scopes', through='Scope')

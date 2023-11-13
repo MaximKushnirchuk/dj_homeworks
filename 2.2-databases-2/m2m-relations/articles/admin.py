@@ -9,15 +9,11 @@ class ArticleFormeSet(forms.BaseInlineFormSet):
     def clean(self):
         count = 0
         tags_list = []
-        print(' 8 -'*20)
         for form in self.forms:
-            print()
-            print(form.cleaned_data)
             if form.cleaned_data :
                 if form.cleaned_data['is_main']:
                     count += 1
                 if 'tag_name' in form.cleaned_data :
-                    print('tag == ', form.cleaned_data['tag_name'])
                     if form.cleaned_data['tag_name'] not in tags_list:
                         tags_list.append(form.cleaned_data['tag_name'])
                     else: raise ValidationError(f"Тег {form.cleaned_data['tag_name']} указан больше одного раза !!!" )
@@ -27,9 +23,6 @@ class ArticleFormeSet(forms.BaseInlineFormSet):
         if count >= 2:
             raise ValidationError('Основной раздел может быть один!')
         return super().clean()
-
-
-
 
 class ScopeInline(admin.TabularInline):
     model = Scope
@@ -42,6 +35,8 @@ class ArticleAdmin(admin.ModelAdmin):
 
 class TagAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
+
+
 
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Tag, TagAdmin)
