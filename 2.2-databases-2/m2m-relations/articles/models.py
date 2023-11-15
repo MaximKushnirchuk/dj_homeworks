@@ -2,30 +2,33 @@ from django.db import models
 
 
 class Article(models.Model):
-
-    title = models.CharField(max_length=256, verbose_name='Название', unique= True)
-    text = models.TextField(verbose_name='Текст')
-    published_at = models.DateTimeField(verbose_name='Дата публикации')
-    image = models.ImageField(null=True, blank=True, verbose_name='Изображение',)
+    title = models.CharField(max_length=256, verbose_name="Название", unique=True)
+    text = models.TextField(verbose_name="Текст")
+    published_at = models.DateTimeField(verbose_name="Дата публикации")
+    image = models.ImageField(
+        null=True,
+        blank=True,
+        verbose_name="Изображение",
+    )
 
     class Meta:
-        verbose_name = 'Статья'
-        verbose_name_plural = 'Статьи'
-        ordering = ['published_at']
+        verbose_name = "Статья"
+        verbose_name_plural = "Статьи"
+        ordering = ["published_at"]
 
     def __str__(self):
         return self.title
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=30,  verbose_name='Тег')
-    articles = models.ManyToManyField(Article, related_name='scopes', through='Scope')
+    name = models.CharField(max_length=30, verbose_name="Тег")
+    articles = models.ManyToManyField(Article, related_name="scopes", through="Scope")
 
     def __str__(self):
         return self.name
 
+
 class Scope(models.Model):
-    
     title = models.ForeignKey(Article, on_delete=models.CASCADE)
     tag_name = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    is_main = models.BooleanField(default= False)
+    is_main = models.BooleanField(default=False)

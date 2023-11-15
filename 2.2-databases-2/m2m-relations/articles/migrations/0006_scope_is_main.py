@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('articles', '0005_auto_20231109_1039'),
+        ("articles", "0005_auto_20231109_1039"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='scope',
-            name='is_main',
+            model_name="scope",
+            name="is_main",
             field=models.BooleanField(default=False),
         ),
     ]

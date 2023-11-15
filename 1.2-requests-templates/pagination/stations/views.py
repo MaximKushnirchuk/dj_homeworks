@@ -14,17 +14,23 @@ def bus_stations(request):
     # также передайте в контекст список станций на странице
 
     with open(BUS_STATION_CSV, encoding='utf-8') as f :
-        reader = csv.reader(f)
-        row_list = list(reader)
-        # print(row_list)
-        # return HttpResponse(res)
+        reader = csv.DictReader(f)
+        list_dicts = [i for i in reader]
+        test = [
+            {'Name': 'mama', 'Street': 'papa', 'District': 'ded'},
+            {'Name': 'mama', 'Street': 'papa', 'District': 'ded'}
+        ]
 
         page_number = request.GET.get('page', 1)
-        pagi = Paginator(row_list, 10)
+        pagi = Paginator(list_dicts, 3)
         page = pagi.get_page(page_number)
 
         context = {
-            'bus_stations': row_list,
+            'bus_stations': pagi,
             'page': page,
         }
         return render(request, 'stations/index.html', context)
+
+
+
+        # return HttpResponse(reader)

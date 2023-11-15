@@ -5,25 +5,30 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('articles', '0004_auto_20231109_1001'),
+        ("articles", "0004_auto_20231109_1001"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='tag',
-            name='articles',
-            field=models.ManyToManyField(related_name='scopes', through='articles.Scope', to='articles.Article'),
+            model_name="tag",
+            name="articles",
+            field=models.ManyToManyField(
+                related_name="scopes", through="articles.Scope", to="articles.Article"
+            ),
         ),
         migrations.AlterField(
-            model_name='scope',
-            name='tag_name',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='articles.tag'),
+            model_name="scope",
+            name="tag_name",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="articles.tag"
+            ),
         ),
         migrations.AlterField(
-            model_name='scope',
-            name='title',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='articles.article'),
+            model_name="scope",
+            name="title",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="articles.article"
+            ),
         ),
     ]
