@@ -22,14 +22,11 @@ class StockViewSet(ModelViewSet):
 
     # при необходимости добавьте параметры фильтрации
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    filterset_fields = ['products', ]
-    search_fields = ['positions']
+    filterset_fields = ['products',]
 
-class StockProductViewSet(ModelViewSet):
-    queryset = StockProduct.objects.all()
-    serializer_class = ProductPositionSerializer
-    filter_backends = [DjangoFilterBackend, SearchFilter]
-    filterset_fields = ['positions_title']
+    # фильтрация для доп. задания
+    search_fields = ['positions__product__title', 'positions__product__description']
+
 
     
 

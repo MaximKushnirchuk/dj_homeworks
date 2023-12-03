@@ -7,8 +7,8 @@ POST {{baseUrl}}/products/
 Content-Type: application/json
 
 {
-  "title": "arbuzz",
-  "description": "Astrahan arbuz"
+  "title": "kiwi",
+  "description": "Madagaskar kiwi"
 }
 
 ###
@@ -20,35 +20,30 @@ Content-Type: application/json
 ###
 
 # обновление продукта
-PATCH {{baseUrl}}/products/2/
+PATCH {{baseUrl}}/products/8/
 Content-Type: application/json
 
 {
-  "description": "Senegal potatos"
+  "description": "Madagaskar green kiwi"
 }
 
 ###
 
 # удаление продукта
-DELETE {{baseUrl}}/products//
+DELETE {{baseUrl}}/products/8/
 Content-Type: application/json
 
 ###
 
 # поиск продуктов по названию
-GET {{baseUrl}}/products/?title=potatos
+GET {{baseUrl}}/products/?title=kiwi
 Content-Type: application/json
 
 ###
 
 # поиск продуктов по описанию
-GET {{baseUrl}}/products/?search=China 
+GET {{baseUrl}}/products/?search=Uzbek 
 Content-Type: application/json
-
-
-
-
-
 
 
 ###
@@ -58,7 +53,7 @@ POST {{baseUrl}}/stocks/
 Content-Type: application/json
 
 {
-  "address": "petrozavodsk_13",
+  "address": "petrozavodsk_15",
   "positions": [
     {
       "product": 2,
@@ -71,13 +66,13 @@ Content-Type: application/json
 ###
 
 # обновляем записи на складе
-PATCH {{baseUrl}}/stocks/11/
+PATCH {{baseUrl}}/stocks/13/
 Content-Type: application/json
 
 {
   "positions": [
     {
-      "product": 5,
+      "product": 9,
       "quantity": 777,
       "price": 333
     }
@@ -87,23 +82,18 @@ Content-Type: application/json
 ###
 
 # поиск складов, где есть определенный продукт (по id)
-GET {{baseUrl}}/stocks/?products=4
+GET {{baseUrl}}/stocks/?products=5
 Content-Type: application/json
 
 ###
 
-# поиск складов, где есть определенный продукт (по оптсанию )
-GET {{baseUrl}}/stocks/?search=China
+# Доп задание
+# поиск складов, где есть определенный продукт (по описанию )
+GET {{baseUrl}}/stocks/?search=kiwi
 Content-Type: application/json
 
 
 
-
-###
-# поиск складов, где есть определенный продукт
-
-GET {{baseUrl}}/name_product/?search=China
-Content-Type: application/json
 
 
 
