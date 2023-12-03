@@ -5,28 +5,59 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Sensor',
+            name="Sensor",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=30, verbose_name='модель датчика')),
-                ('description', models.CharField(max_length=50, verbose_name='расположение')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=30, verbose_name="модель датчика"),
+                ),
+                (
+                    "description",
+                    models.CharField(max_length=50, verbose_name="расположение"),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Measurement',
+            name="Measurement",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('temperature', models.IntegerField(verbose_name='температура')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='дата измерения')),
-                ('sensor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='measurement.sensor')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("temperature", models.IntegerField(verbose_name="температура")),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="дата измерения"
+                    ),
+                ),
+                (
+                    "sensor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="measurement.sensor",
+                    ),
+                ),
             ],
         ),
     ]
