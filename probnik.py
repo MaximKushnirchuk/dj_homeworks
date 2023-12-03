@@ -15,5 +15,3 @@ import re
 #         else : 
 #             print(coun, ' -- > ', row[0].split(';')[1])
 
-l = ['rita', 'saha', 'kost']
-res = {'mama':  for i in l}
