@@ -67,7 +67,7 @@ def test_list_course_filter_id(client, course_factory):
     curs = course_factory(_quantity= 10)
     curs_id = curs[2].id
     #  Act
-    response = client.get(f'/api/v1/courses/?id={curs_id}')
+    response = client.get(f'/api/v1/courses/', {'id': curs_id} )
     
     # Assert
     data = response.json()
@@ -83,7 +83,7 @@ def test_list_course_filter_name(client, course_factory):
     curs = course_factory(_quantity= 10)
 
     #  Act
-    response = client.get('/api/v1/courses/?name=match')
+    response = client.get('/api/v1/courses/', {'name': 'match'})
     
     # Assert
     data = response.json()

@@ -7,8 +7,8 @@ POST {{baseUrl}}/products/
 Content-Type: application/json
 
 {
-  "title": "kiwi",
-  "description": "Madagaskar kiwi"
+  "title": "apple",
+  "description": "poland"
 }
 
 ###
@@ -20,29 +20,23 @@ Content-Type: application/json
 ###
 
 # обновление продукта
-PATCH {{baseUrl}}/products/8/
+PATCH {{baseUrl}}/products/1/
 Content-Type: application/json
 
 {
-  "description": "Madagaskar green kiwi"
+  "description": "Fillipin cocos"
 }
 
 ###
 
 # удаление продукта
-DELETE {{baseUrl}}/products/8/
+DELETE {{baseUrl}}/products/1/
 Content-Type: application/json
 
 ###
 
-# поиск продуктов по названию
-GET {{baseUrl}}/products/?title=kiwi
-Content-Type: application/json
-
-###
-
-# поиск продуктов по описанию
-GET {{baseUrl}}/products/?search=Uzbek 
+# поиск продуктов по описанию или описанию
+GET {{baseUrl}}/products/?search=pol
 Content-Type: application/json
 
 
@@ -53,12 +47,27 @@ POST {{baseUrl}}/stocks/
 Content-Type: application/json
 
 {
-  "address": "petrozavodsk_15",
+  "address": "inoin_stock",
   "positions": [
     {
-      "product": 2,
-      "quantity": 250,
-      "price": 120.50
+      "product": 14,
+      "quantity": 10,
+      "price": 150
+    },
+    {
+      "product": 17,
+      "quantity": 10,
+      "price": 160
+    },
+    {
+      "product": 18,
+      "quantity": 1,
+      "price": 13000000
+    },
+    {
+      "product": 21,
+      "quantity": 3,
+      "price": 18000000
     }
   ]
 }
@@ -66,30 +75,36 @@ Content-Type: application/json
 ###
 
 # обновляем записи на складе
-PATCH {{baseUrl}}/stocks/13/
+PATCH {{baseUrl}}/stocks/17/
 Content-Type: application/json
 
 {
   "positions": [
     {
-      "product": 9,
-      "quantity": 777,
-      "price": 333
+      "product": 14,
+      "quantity": 8,
+      "price": 170
+    },
+    {
+      "product": 22,
+      "quantity": 10,
+      "price": 190
     }
+    
   ]
 }
 
 ###
 
 # поиск складов, где есть определенный продукт (по id)
-GET {{baseUrl}}/stocks/?products=5
+GET {{baseUrl}}/stocks/?products=22
 Content-Type: application/json
 
 ###
 
 # Доп задание
 # поиск складов, где есть определенный продукт (по описанию )
-GET {{baseUrl}}/stocks/?search=kiwi
+GET {{baseUrl}}/stocks/?search=911
 Content-Type: application/json
 
 
