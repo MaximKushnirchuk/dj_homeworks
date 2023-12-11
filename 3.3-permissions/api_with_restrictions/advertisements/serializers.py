@@ -44,30 +44,32 @@ class AdvertisementSerializer(serializers.ModelSerializer):
     def validate(self, data):
         """Метод для валидации. Вызывается при создании и обновлении."""
         print(" - - VALIDATE - - ")
-        count_open_status = 0
-        list_advertisement = Advertisement.objects.all()
-        for adv in list_advertisement:
-            if (
-                adv.creator.id == self.context["request"].user.id
-                and adv.status == "OPEN"
-            ):
-                count_open_status += 1
-        print("Было насчитано ", count_open_status, "объявленийБ со статусом : OPEN")
+        count_open_adv = Advertisement.objects.filter(
+            creator=self.context["request"].user.id, status="OPEN"
+        ).count()
+
+        # Для контроля работы в терминале
+        print("uiser id = ", self.context["request"].user.id)
+        print("count_open_adv = ", count_open_adv)
+        print(" - " * 12)
+
         if self.context["request"].method == "POST":
-            if count_open_status == 10:
+            if count_open_adv > 9:
+                print(
+                    "Количество объявдений со статусом OPEN достигло максимального значения и равно",
+                    count_open_adv,
+                )
                 raise ValidationError(
                     "Нельзя иметь больше 10 объявлений со татусом : : OPEN"
                 )
-            print(
-                "Количество объявдений со статусом OPEN теперь равно",
-                count_open_status + 1,
-            )
+            else:
+                print(
+                    "Добавлено обьявление. Количество объявдений со статусом OPEN теперь равно",
+                    count_open_adv + 1,
+                )
 
         elif self.context["request"].method == "PATCH":
-            if (
-                count_open_status == 10
-                and self.context["request"].data["status"] == "OPEN"
-            ):
+            if count_open_adv > 9 and data.get("status") == "OPEN":
                 raise ValidationError(
                     "Нельзя иметь больше 10 объявлений со татусом: OPEN"
                 )

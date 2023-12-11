@@ -14,8 +14,8 @@ Content-Type: application/json
 Authorization: Token 56c945ecfaac069442ecede01caef19ab2eb8e7d
 
 {
-  "title": "Audi",
-  "description": "A 6"
+  "title": "finish_test_4_user_1",
+  "description": "++++++"
 }
 
 
@@ -26,14 +26,14 @@ Content-Type: application/json
 Authorization: Token 20cbb5dabe7fa13166be45c8cabebc25b7d14822
 
 {
-  "title": "bike",
-  "description": "suzuki"
+  "title": "finish_test_6_user_2",
+  "description": "++++++"
 }
 
 
 ###
 # попытка поменять объявление
-PATCH {{baseUrl}}/advertisements/11/
+PATCH {{baseUrl}}/advertisements/9/
 Content-Type: application/json
 Authorization: Token 56c945ecfaac069442ecede01caef19ab2eb8e7d
 
@@ -43,10 +43,10 @@ Authorization: Token 56c945ecfaac069442ecede01caef19ab2eb8e7d
 
 
 ###
-# попытка удалить объявление
-DELETE {{baseUrl}}/advertisements/11/
+#  удалить объявление
+DELETE {{baseUrl}}/advertisements/22/
 Content-Type: application/json
-Authorization: Token 20cbb5dabe7fa13166be45c8cabebc25b7d14822
+Authorization: Token 56c945ecfaac069442ecede01caef19ab2eb8e7d
 
 
 ###
@@ -58,10 +58,10 @@ Content-Type: application/json
 
 ###
 # фильтрация по создателю
-GET {{baseUrl}}/advertisements/?creator=2
+GET {{baseUrl}}/advertisements/?creator=1
 Content-Type: application/json
 
 ###
 # фильтрация по дате
-GET {{baseUrl}}/advertisements/?created_at_before=2023-11-05
+GET {{baseUrl}}/advertisements/?created_at_before=2023-12-10
 Content-Type: application/json
