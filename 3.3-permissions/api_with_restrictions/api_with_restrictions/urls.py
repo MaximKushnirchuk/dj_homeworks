@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework.routers import DefaultRouter
+from  advertisements.views  import sample_view
 
 router = DefaultRouter()
 # TODO: подключите `AdvertisementViewSet`
@@ -25,4 +26,5 @@ router = DefaultRouter()
 urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('api/v1/test/', sample_view)
 ]
