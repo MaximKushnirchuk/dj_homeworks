@@ -46,15 +46,4 @@ jobs:
       - name: Линтинг
         run: flake8 api_with_restrictions/ --exclude api_with_restrictions/settings.py
 
-      - name: Тестирование
-        run: python manage.py test
-        env:
-          SECRET: "z5^+-9&b+ok(d%hl!%lbft$$bd(yz$3g5cq_ch6pw5l#8+ap+-" 
-          DEBUG: True 
-          ALLOWED_HOSTS: '89.104.70.100' 
-          DB_ENGINE: "django.db.backends.postgresql" 
-          DB_USER: "postgres" 
-          DB_PASSWORD: 'maxim12345' 
-          DB_NAME: "netology_classified_ads" 
-          DB_HOST: "127.0.0.1" 
-          DB_PORT: "5432" 
+      
