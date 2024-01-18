@@ -20,6 +20,6 @@ class AdvertisementViewSet(ModelViewSet):
         return []
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def sample_view(request):
-    return Response('Hello')
+    return Response("Hello")

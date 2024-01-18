@@ -1,0 +1,60 @@
+name: Автоматизация тестирования и развёртывания проекта
+
+on : 
+  push:
+    branches: [video] 
+
+jobs:
+  tests:
+    runs-on: ubuntu 22.04
+    env:
+      SECRET: ${{ secrets.DJANGO_SECRET }} 
+      DEBUG: ${{ secrets.DEBUG }} 
+      ALLOWED_HOSTS: ${{ secrets.ALLOWED }} 
+      DB_ENGINE: ${{ secrets.DB_ENGINE }} 
+      DB_USER: ${{ secrets.DB_USER }} 
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }} 
+      DB_NAME: ${{ secrets.DB_NAME }} 
+      DB_HOST: ${{ secrets.DB_HOST }} 
+      DB_PORT: ${{ secrets.DB_PORT }} 
+    service:
+      postgres_db:
+        image: postgres:12
+        env:
+          POSTGRES_DB: ${{ env.DB_NAME }}
+          POSTGRES_USER: ${{ env.DB_USER }}
+          POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
+        ports: 
+          - 5432:5432
+        options:
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5s
+    steps:
+      - name: Проверка изменений в репозитории
+        uses: actions/checkout@v3
+
+      - name: Установка Пайтон и окружения
+        uses: actions/setup-python@v3
+        with: 
+          python-version:3.9
+
+      - name: Установка зависимотстей
+        run: pip install -r requirements.txt
+
+      - name: Линтинг
+        run: flake8 api_with_restrictions/ --exclude api_with_restrictions/settings.py
+
+      - name: Тестирование
+        run: python manage.py test
+        env:
+          SECRET: "z5^+-9&b+ok(d%hl!%lbft$$bd(yz$3g5cq_ch6pw5l#8+ap+-" 
+          DEBUG: True 
+          ALLOWED_HOSTS: '89.104.70.100' 
+          DB_ENGINE: "django.db.backends.postgresql" 
+          DB_USER: "postgres" 
+          DB_PASSWORD: 'maxim12345' 
+          DB_NAME: "netology_classified_ads" 
+          DB_HOST: "127.0.0.1" 
+          DB_PORT: "5432" 
